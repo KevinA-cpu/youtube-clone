@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { FaSearch, FaKeyboard, FaTimes } from "react-icons/fa";
+import { FaSearch, FaKeyboard, FaTimes, FaMicrophone } from "react-icons/fa";
 import Keyboard from "react-simple-keyboard";
+import Draggable from "react-draggable";
+import { Tooltip } from "antd";
 import "react-simple-keyboard/build/css/index.css";
 import styles from "./SearchBar.module.scss";
 
@@ -8,6 +10,7 @@ function SearchBar() {
   const [query, setQuery] = useState("");
   const [extended, setExtended] = useState(false);
   const [showKeyboard, setShowKeyboard] = useState(false);
+  const [keyboardHovered, setKeyboardHovered] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +19,7 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div className="flex align-middle">
       <form onSubmit={handleSubmit} className="relative">
         <div className="flex items-center">
           {extended && (
@@ -43,36 +46,59 @@ function SearchBar() {
             />
           </div>
           <button
-            className="absolute inset-y-0 right-10 flex items-center pr-3"
+            className="absolute inset-y-0 right-10 flex items-center pr-3 opacity-0 hover:opacity-100 focus:opacity-100"
             onClick={() => setShowKeyboard(!showKeyboard)}
+            onMouseEnter={() => setKeyboardHovered(true)}
+            onMouseDown={() => setExtended(false)}
+            onMouseUp={() => setExtended(true)}
+            style={{ opacity: keyboardHovered ? 1 : 0 }}
           >
             <FaKeyboard className="text-gray-400 hover:text-black" />
           </button>
         </div>
-        <div
-          className={`border  rounded-r-full absolute inset-y-0 right-0 flex items-center pr-3 w-13 bg-slate-100 
+        <Tooltip title="Search">
+          <div
+            className={`cursor-pointer border hover:bg-slate-200 rounded-r-full absolute inset-y-0 right-0 flex items-center pr-3 w-12 bg-slate-100 
       ${extended ? "border-l-blue-300" : "border-slate-300"}`}
-        >
-          <div className="w-px h-full"></div>
-          <button type="submit" className="ml-3.5">
-            <FaSearch />
-          </button>
-        </div>
+          >
+            <button type="submit" className="ml-4">
+              <FaSearch />
+            </button>
+          </div>
+        </Tooltip>
       </form>
       {showKeyboard && (
-        <div className="border border-gray-200 absolute bottom-0 right-0 ">
-          <button
-            className="absolute -top-7 right-0 mt-2 mr-2 text-gray-500 hover:text-black"
-            onClick={() => setShowKeyboard(false)}
+        <Draggable>
+          <div
+            className={`${styles.KeyboardBox} absolute bottom-0 right-0 cursor-move`}
           >
-            <FaTimes />
-          </button>
-          <Keyboard
-            onChange={(input) => setQuery(input)}
-            layoutName="default"
-          />
-        </div>
+            <button
+              className="absolute -top-1 right-0 mt-2 mr-2 text-gray-500 hover:text-black"
+              onClick={() => setShowKeyboard(false)}
+            >
+              <FaTimes />
+            </button>
+            <Keyboard
+              onChange={(input) => setQuery(input)}
+              layoutName="default"
+            />
+          </div>
+        </Draggable>
       )}
+      <Tooltip title="Search with your voice">
+        <button
+          type="button"
+          className="ml-4 rounded-full flex flex-col justify-center items-center  
+        hover:bg-gray-200 active:bg-gray-300 active:border active:border-gray-300"
+          style={{
+            height: "2.0rem",
+            width: "2.0rem",
+            transition: "border 0.3s",
+          }}
+        >
+          <FaMicrophone />
+        </button>
+      </Tooltip>
     </div>
   );
 }

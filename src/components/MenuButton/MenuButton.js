@@ -11,7 +11,7 @@ function MenuButton() {
   return (
     <button
       className="rounded-full flex flex-col justify-center items-center  
-       hover:bg-gray-300 active:bg-gray-400 active:border active:border-gray-400"
+       hover:bg-gray-200 active:bg-gray-300 active:border active:border-gray-300"
       onClick={toggleMenu}
       style={{ height: "2.0rem", width: "2.0rem", transition: "border 0.3s" }}
     >
