@@ -10,7 +10,7 @@ const YoutubeLogo = () => (
       color: "black",
     }}
   >
-    <div data-testid="YoutubeLogo" className="cursor-pointer">
+    <div data-testid="YoutubeLogo" className="cursor-pointer flex align-middle">
       <div className="flex text-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

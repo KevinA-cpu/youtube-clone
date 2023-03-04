@@ -23,6 +23,26 @@
       "withStory": false,
       "withStyle": true,
       "withTest": true
+    },
+    "page-components": {
+      "customTemplates": {
+        "component": "src/templates/component/TemplateName.js"
+      },
+      "path": "src/container-components/page-components",
+      "withLazy": false,
+      "withStory": false,
+      "withStyle": true,
+      "withTest": true
+    },
+    "part-components": {
+      "customTemplates": {
+        "component": "src/templates/component/TemplateName.js"
+      },
+      "path": "src/container-components/part-components",
+      "withLazy": false,
+      "withStory": false,
+      "withStyle": true,
+      "withTest": true
     }
   }
 }

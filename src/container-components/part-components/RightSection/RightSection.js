@@ -1,6 +1,6 @@
 import React from "react";
-import SettingsButton from "../SettingsButton/SettingsButton";
-import SignInButton from "../SignInButton/SignInButton";
+import SettingsButton from "../../../components/SettingsButton/SettingsButton";
+import SignInButton from "../../../components/SignInButton/SignInButton";
 import "./RightSection.module.scss";
 
 const RightSection = () => (

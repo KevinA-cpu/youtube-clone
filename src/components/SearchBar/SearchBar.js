@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaSearch, FaKeyboard, FaTimes, FaMicrophone } from "react-icons/fa";
+import { FaSearch, FaKeyboard, FaTimes } from "react-icons/fa";
 import Keyboard from "react-simple-keyboard";
 import Draggable from "react-draggable";
 import { Tooltip } from "antd";
@@ -22,35 +22,36 @@ function SearchBar() {
     <div className="flex align-middle">
       <form onSubmit={handleSubmit} className="relative">
         <div className="flex items-center">
-          {extended && (
+          {extended ? (
             <div
               className={`border border-blue-300 rounded-l-full border-r-transparent w-10 h-8-5 flex items-center pl-4 ${styles.h8_5}`}
             >
               <FaSearch />
             </div>
+          ) : (
+            <div className={`w-10 h-8-5 pl-4 ${styles.h8_5}`}></div>
           )}
-          <div className="relative flex-grow">
-            <input
-              type="text"
-              placeholder="Search"
-              className={`border bg-white text-gray-800 rounded-full pl-3 pr-4 py-1 w-96 focus:outline-none focus:bg-white focus:text-gray-900
+          <input
+            type="text"
+            placeholder="Search"
+            className={`border bg-white text-gray-800 rounded-full pl-3 pr-4 py-1 focus:outline-none focus:bg-white focus:text-gray-900
           ${
             extended
               ? "border-l-transparent rounded-l-none border-blue-300"
               : "border-slate-300"
-          } `}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onFocus={() => setExtended(true)}
-              onBlur={() => setExtended(false)}
-            />
-          </div>
+          } ${styles.wSearchBar}`}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => setExtended(true)}
+            onBlur={() => setExtended(false)}
+          />
           <button
             className="absolute inset-y-0 right-10 flex items-center pr-3 opacity-0 hover:opacity-100 focus:opacity-100"
             onClick={() => setShowKeyboard(!showKeyboard)}
             onMouseEnter={() => setKeyboardHovered(true)}
             onMouseDown={() => setExtended(false)}
             onMouseUp={() => setExtended(true)}
+            onBlur={() => setExtended(false)}
             style={{ opacity: keyboardHovered ? 1 : 0 }}
           >
             <FaKeyboard className="text-gray-400 hover:text-black" />
@@ -85,20 +86,6 @@ function SearchBar() {
           </div>
         </Draggable>
       )}
-      <Tooltip title="Search with your voice">
-        <button
-          type="button"
-          className="ml-4 rounded-full flex flex-col justify-center items-center  
-        hover:bg-gray-200 active:bg-gray-300 active:border active:border-gray-300"
-          style={{
-            height: "2.0rem",
-            width: "2.0rem",
-            transition: "border 0.3s",
-          }}
-        >
-          <FaMicrophone />
-        </button>
-      </Tooltip>
     </div>
   );
 }
