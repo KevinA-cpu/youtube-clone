@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import HomePageSideBarButton from "../../../components/HomePageSideBarButton/HomePageSideBarButton";
-import ShortsSideBarButton from "../../../components/ShortsSideBarButton/ShortsSideBarButton";
-import SubscriptionsSideBarButton from "../../../components/SubscriptionsSideBarButton/SubscriptionsSideBarButton";
-import LibrarySideBarButton from "../../../components/LibrarySideBarButton/LibrarySideBarButton";
-import HistorySideBarButton from "../../../components/HistorySideBarButton/HistorySideBarButton";
+import NavBarSubSectionOne from "../../part-components/NavBarSubSectionOne/NavBarSubSectionOne";
+import NavBarSubSectionTwo from "../../part-components/NavBarSubSectionTwo/NavBarSubSectionTwo";
 import { useSelector } from "react-redux";
 import "./NavigationSideBar.module.scss";
 
@@ -15,25 +12,15 @@ const NavigationSideBar = () => {
       data-testid="NavigationSideBar"
       className={`flex-col ml-1 mt-4 ${isOpen ? "w-48" : "w-14"} w-`}
     >
-      <HomePageSideBarButton
-        isActive={isActive === "HomePage"}
+      <NavBarSubSectionOne
+        isActive={isActive}
         setIsActive={setIsActive}
+        isOpen={isOpen}
       />
-      <ShortsSideBarButton
-        isActive={isActive === "Shorts"}
+      <NavBarSubSectionTwo
+        isActive={isActive}
         setIsActive={setIsActive}
-      />
-      <SubscriptionsSideBarButton
-        isActive={isActive === "Subscriptions"}
-        setIsActive={setIsActive}
-      />
-      <LibrarySideBarButton
-        isActive={isActive === "Library"}
-        setIsActive={setIsActive}
-      />
-      <HistorySideBarButton
-        isActive={isActive === "History"}
-        setIsActive={setIsActive}
+        isOpen={isOpen}
       />
     </div>
   );

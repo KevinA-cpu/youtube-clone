@@ -3,7 +3,7 @@ import styles from "./HomePage.module.scss";
 
 const HomePage = () => (
   <div className={styles.HomePage} data-testid="HomePage">
-    <h1>HomePage component</h1>
+    <h1>HomePage page</h1>
   </div>
 );
 

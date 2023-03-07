@@ -3,7 +3,7 @@ import "./TemplateName.module.scss";
 
 const TemplateName = () => (
   <div data-testid="TemplateName">
-    <h1>TemplateName component</h1>
+    <h1>TemplateName page</h1>
   </div>
 );
 
