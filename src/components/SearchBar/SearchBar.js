@@ -29,7 +29,7 @@ function SearchBar() {
               <FaSearch />
             </div>
           ) : (
-            <div className={`w-10 h-8-5 pl-4 ${styles.h8_5}`}></div>
+            <div className="w-10 h-[34.2px] pl-4"></div>
           )}
           <input
             type="text"
@@ -39,7 +39,7 @@ function SearchBar() {
             extended
               ? "border-l-transparent rounded-l-none border-blue-300"
               : "border-slate-300"
-          } ${styles.wSearchBar}`}
+          } w-[475px]`}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setExtended(true)}
